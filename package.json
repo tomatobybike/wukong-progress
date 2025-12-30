@@ -32,6 +32,12 @@
   "bin": {
     "wukong-progress": "dist/index.mjs"
   },
+  "files": [
+    "bin/",
+    "src/",
+    "README.md",
+    "README.zh.md"
+  ],
   "scripts": {
     "build": "node scripts/build.js",
     "check:npm:login": "node scripts/check-npm-login.mjs",
@@ -46,10 +52,10 @@
     "push:tags": "git push origin main --follow-tags",
     "prerelease": "yarn lint",
     "release": "yarn check:npm:login && yarn release:patch && npm publish && yarn push:tags",
-    "release:rollback": "git reset --hard HEAD~1 && git tag -d $(git tag --points-at HEAD~1)",
     "release:major": "yarn lint && standard-version --release-as major",
     "release:minor": "yarn lint && standard-version --release-as minor",
     "release:patch": "yarn lint && standard-version --release-as patch",
+    "release:rollback": "git reset --hard HEAD~1 && git tag -d $(git tag --points-at HEAD~1)",
     "report": "wukong-progress report ./profile.json -o my-report.html --open",
     "sort": "sort-package-json",
     "test": "npm run test:node && npm run test:vitest",
