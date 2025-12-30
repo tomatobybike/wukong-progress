@@ -1,0 +1,88 @@
+{
+  "name": "@wukong/progress",
+  "version": "0.1.0",
+  "description": "🔥 高性能 CLI/Node Profiler，支持 Flame Graph、Chrome Trace、HOT 步骤检测、性能回归分析",
+  "keywords": [
+    "profiler",
+    "flamegraph",
+    "node",
+    "cli",
+    "performance",
+    "hotstep",
+    "chrome-trace",
+    "ci"
+  ],
+  "homepage": "https://tomatobybike.github.io/wukong-profiler/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tomatobybike/wukong-profiler"
+  },
+  "license": "MIT",
+  "author": "Tom <tomatobybike@gmail.com>",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.mjs"
+  },
+  "scripts": {
+    "check:npm:login": "node scripts/check-npm-login.mjs",
+    "example": "node examples/index.mjs",
+    "format": "prettier --write \"src/**/*.{js,mjs}\"",
+    "lint": "eslint src --ext .js,.mjs src",
+    "lint:fix": "eslint src --ext .js,.mjs --fix",
+    "pack": "npm pack",
+    "prepare": "husky install",
+    "prepublishOnly": "yarn lint",
+    "prettierall": "npx prettier --write 'src/**/*.{js,jsx}'",
+    "push:tags": "git push origin main --follow-tags",
+    "prerelease": "yarn lint",
+    "release": "yarn check:npm:login && yarn release:patch && npm publish && yarn push:tags",
+    "release:rollback": "git reset --hard HEAD~1 && git tag -d $(git tag --points-at HEAD~1)",
+    "release:major": "yarn lint && standard-version --release-as major",
+    "release:minor": "yarn lint && standard-version --release-as minor",
+    "release:patch": "yarn lint && standard-version --release-as patch",
+    "report": "wukong-profiler report ./profile.json -o my-report.html --open",
+    "sort": "sort-package-json",
+    "test": "npm run test:node && npm run test:vitest",
+    "test:node": "node --test test/node/render.node.test.mjs",
+    "test:vitest": "vitest run"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "package.json": [
+      "sort-package-json"
+    ],
+    "src/**/*.js": [
+      "prettier --write",
+      "eslint --fix"
+    ]
+  },
+  "dependencies": {
+    "chalk": "^5.3.0"
+  },
+  "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "6.0.0",
+    "eslint": "8.57.1",
+    "eslint-config-airbnb-base": "15.0.0",
+    "eslint-config-prettier": "10.1.8",
+    "eslint-import-resolver-alias": "1.1.2",
+    "eslint-plugin-import": "2.32.0",
+    "eslint-plugin-prettier": "5.5.4",
+    "eslint-plugin-simple-import-sort": "12.1.1",
+    "husky": "9.1.7",
+    "lint-staged": "16.2.7",
+    "prettier": "3.7.4",
+    "prettier-plugin-packagejson": "2.5.20",
+    "sort-package-json": "3.6.0",
+    "standard-version": "9.5.0",
+    "strip-ansi": "^7.1.2",
+    "vitest": "^1.3.0"
+  },
+  "packageManager": "yarn@1.22.22",
+  "engines": {
+    "node": ">=18"
+  }
+}

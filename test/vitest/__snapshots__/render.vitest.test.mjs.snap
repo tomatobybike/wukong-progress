@@ -1,0 +1,24 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`progress snapshot > renders multiple bars 1`] = `
+"Build Build [░░░░░░░░░░░░░░░░░░] 0%
+Build Build [░░░░░░░░░░░░░░░░░░] 0%
+Test Test  [░░░░░░░░░░░░░░░░░░░] 0%
+Build Build [█████████░░░░░░░░░] 50%
+Test Test  [░░░░░░░░░░░░░░░░░░░] 0%
+Build Build [█████████░░░░░░░░░] 50%
+Test Test  [████████░░░░░░░░░░░] 40%
+"
+`;
+
+exports[`progress snapshot > renders stable text output 1`] = `
+"Compile Compile [░░░░░░░░░░] 0% 0/10
+Compile Compile [███░░░░░░░] 30% 3/10
+"
+`;
+
+exports[`progress snapshot > stable render 1`] = `
+"{"type":"progress","bars":[{"name":"","current":0,"total":10,"percent":0,"complete":false}]}
+{"type":"progress","bars":[{"name":"","current":5,"total":10,"percent":50,"complete":false}]}
+"
+`;
