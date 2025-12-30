@@ -1,21 +1,25 @@
 {
-  "name": "wukongprogress",
+  "name": "wukong-progress",
   "version": "0.1.0",
-  "description": "🔥 高性能 CLI/Node Profiler，支持 Flame Graph、Chrome Trace、HOT 步骤检测、性能回归分析",
+  "description": "Lightweight ESM CLI progress bar for Node.js with multiple bars, groups, stages and JSON fallback",
   "keywords": [
-    "profiler",
-    "flamegraph",
-    "node",
     "cli",
-    "performance",
-    "hotstep",
-    "chrome-trace",
-    "ci"
+    "progress",
+    "progress-bar",
+    "esm",
+    "node",
+    "terminal",
+    "multibar",
+    "async",
+    "concurrent",
+    "cli-tool",
+    "json-fallback",
+    "wukong"
   ],
-  "homepage": "https://tomatobybike.github.io/wukong-profiler/",
+  "homepage": "https://tomatobybike.github.io/wukong-progress/",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tomatobybike/wukong-profiler"
+    "url": "git+https://github.com/tomatobybike/wukong-progress"
   },
   "license": "MIT",
   "author": "Tom <tomatobybike@gmail.com>",
@@ -23,7 +27,13 @@
   "exports": {
     ".": "./src/index.mjs"
   },
+  "main": "dist/index.mjs",
+  "module": "dist/index.mjs",
+  "bin": {
+    "wukong-progress": "dist/index.mjs"
+  },
   "scripts": {
+    "build": "node scripts/build.js",
     "check:npm:login": "node scripts/check-npm-login.mjs",
     "example": "node examples/index.mjs",
     "format": "prettier --write \"src/**/*.{js,mjs}\"",
@@ -31,7 +41,7 @@
     "lint:fix": "eslint src --ext .js,.mjs --fix",
     "pack": "npm pack",
     "prepare": "husky install",
-    "prepublishOnly": "yarn lint",
+    "prepublishOnly": "yarn lint && yarn build",
     "prettierall": "npx prettier --write 'src/**/*.{js,jsx}'",
     "push:tags": "git push origin main --follow-tags",
     "prerelease": "yarn lint",
@@ -40,7 +50,7 @@
     "release:major": "yarn lint && standard-version --release-as major",
     "release:minor": "yarn lint && standard-version --release-as minor",
     "release:patch": "yarn lint && standard-version --release-as patch",
-    "report": "wukong-profiler report ./profile.json -o my-report.html --open",
+    "report": "wukong-progress report ./profile.json -o my-report.html --open",
     "sort": "sort-package-json",
     "test": "npm run test:node && npm run test:vitest",
     "test:node": "node --test test/node/render.node.test.mjs",
