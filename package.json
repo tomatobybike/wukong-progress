@@ -1,6 +1,6 @@
 {
   "name": "wukong-progress",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Lightweight ESM CLI progress bar for Node.js with multiple bars, groups, stages and JSON fallback",
   "keywords": [
     "cli",
