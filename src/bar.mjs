@@ -24,6 +24,7 @@ export function createBar(ctx, opts) {
     update(state.current + n)
   }
 
+  // eslint-disable-next-line default-param-last
   function step(n = 1, payload) {
     state.payload = payload
     tick(n)
