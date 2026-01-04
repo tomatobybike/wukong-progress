@@ -10,7 +10,8 @@ const examples = [
   { name: 'Single Bar', file: 'single-bar.mjs' },
   { name: 'Multi Bar', file: 'multi-bar.mjs' },
   { name: 'Group / Stage', file: 'group-stage.mjs' },
-  { name: 'JSON Fallback', file: 'json-fallback.mjs' }
+  { name: 'JSON Fallback', file: 'json-fallback.mjs' },
+  { name: 'Step', file: 'step.mjs' }
 ]
 
 console.log(chalk.green.bold('Select an example to run:'))

@@ -79,6 +79,41 @@ async function run() {
 run();
 ```
 
+### Step with Payload
+
+Update progress with a descriptive payload message.
+
+```js
+import chalk from 'chalk'
+import { createMultiBar } from '../src/index.mjs'
+
+const mb = createMultiBar()
+
+const build = mb.create(100, {
+  prefix: chalk.blue('Build'),
+  format: 'Build [:bar] :percent :payload'
+})
+const test = mb.create(50, {
+  prefix: chalk.magenta('Test'),
+  format: 'Test  [:bar] :percent'
+})
+
+async function run() {
+  for (let i = 0; i <= 100; i++) {
+    await new Promise((r) => setTimeout(r, 15))
+    if (i <= 50) test.tick()
+    build.step(5, 'Extracting Git history...')
+    build.step(5, 'Parsing commits...')
+    build.step(5, 'Generating Changelog...')
+    build.step(5, 'Generating Release Info...')
+  }
+  mb.stop()
+  console.log(chalk.green('\nAll tasks done!\n'))
+}
+
+run()
+```
+
 ---
 
 ### Group / Stage / prefix

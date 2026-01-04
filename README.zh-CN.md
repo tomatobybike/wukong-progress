@@ -11,7 +11,7 @@
 - JSON fallback（非 TTY）
 - 完全 ESM + Node.js 18+ 兼容
 - 可在 Windows / Linux / macOS 使用
-  
+
 ---
 ## 中文 | [English](./README.md)
 ---
@@ -64,6 +64,41 @@ async function run() {
     await new Promise(r => setTimeout(r, 15))
     if (i <= 50) test.tick()
     build.tick()
+  }
+  mb.stop()
+  console.log(chalk.green('\nAll tasks done!\n'))
+}
+
+run()
+```
+
+### 带文字提示的步骤更新
+
+使用 `step` 方法可以在更新进度的同时附加描述性文字。
+
+```js
+import chalk from 'chalk'
+import { createMultiBar } from '../src/index.mjs'
+
+const mb = createMultiBar()
+
+const build = mb.create(100, {
+  prefix: chalk.blue('Build'),
+  format: 'Build [:bar] :percent :payload'
+})
+const test = mb.create(50, {
+  prefix: chalk.magenta('Test'),
+  format: 'Test  [:bar] :percent'
+})
+
+async function run() {
+  for (let i = 0; i <= 100; i++) {
+    await new Promise((r) => setTimeout(r, 15))
+    if (i <= 50) test.tick()
+    build.step(5, '正在提取 Git 提交记录...')
+    build.step(5, '正在解析提交记录...')
+    build.step(5, '正在生成 Changelog...')
+    build.step(5, '正在生成 Release 信息...')
   }
   mb.stop()
   console.log(chalk.green('\nAll tasks done!\n'))
@@ -144,11 +179,11 @@ run()
 ## 🎨 彩色渲染（可选）
 
 -   使用 `chalk` 可以给 prefix、bar 和提示上色
-    
+
 -   不依赖彩色也能降级到普通文本
-    
+
 -   示例：
-    
+
 
 ```js
 prefix: chalk.green('Build'),
@@ -164,19 +199,19 @@ node examples/index.mjs
 ```
 
 -   交互式选择运行示例：
-    
+
     -   Single Bar
-        
+
     -   Multi Bar
-        
+
     -   Group / Stage
-        
+
     -   JSON Fallback
-        
+
 -   Windows / Linux / macOS 全平台兼容
-    
+
 -   所有示例都用 async/await + chalk 彩色渲染
-    
+
 
 ---
 
@@ -194,24 +229,24 @@ yarn test
 ```
 
 -   ✅ Node:test 测试进度条逻辑
-    
+
 -   ✅ Vitest snapshot 测试渲染稳定性
-    
+
 -   ✅ 支持 mock TTY / ANSI strip / JSON fallback
-    
+
 
 ---
 
 ## 💻 适用场景
 
 -   CLI 工具
-    
+
 -   自动化脚本
-    
+
 -   GitHub Actions / CI
-    
+
 -   多任务并发显示
-    
+
 -   可视化进度 / JSON 输出结合日志分析
-    
+
 

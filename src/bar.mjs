@@ -9,6 +9,7 @@ export function createBar(ctx, opts) {
     format: opts.format,
     minWidth: opts.minWidth ?? 10,
     prefix: opts.prefix ?? '',
+    payload: opts.payload ?? '',
     hideOnComplete: opts.hideOnComplete ?? false,
     complete: false
   }
@@ -23,6 +24,11 @@ export function createBar(ctx, opts) {
     update(state.current + n)
   }
 
+  function step(n = 1, payload) {
+    state.payload = payload
+    tick(n)
+  }
+
   function render(width) {
     const elapsed = (Date.now() - state.start) / 1000
     const percent = state.current / state.total
@@ -32,6 +38,7 @@ export function createBar(ctx, opts) {
       .replace(':percent', '100%')
       .replace(':current', state.total)
       .replace(':total', state.total)
+      .replace(':payload', state.payload)
       .replace(':eta', '00s').length
 
     const barWidth = Math.max(
@@ -53,6 +60,7 @@ export function createBar(ctx, opts) {
         .replace(':percent', color.percent(`${Math.round(percent * 100)}%`))
         .replace(':current', state.current)
         .replace(':total', state.total)
+        .replace(':payload', state.payload)
         .replace(':elapsed', formatTime(elapsed))
         .replace(':eta', formatTime(eta))
     )
@@ -61,6 +69,7 @@ export function createBar(ctx, opts) {
   return {
     state,
     tick,
+    step,
     update,
     render
   }
