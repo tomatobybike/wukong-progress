@@ -1,5 +1,13 @@
 # wukong-progress
 
+<p align="center">
+  <a href="https://www.npmjs.com/package/wukong-progress"><img src="https://img.shields.io/npm/v/wukong-progress.svg" alt="npm version"></a>
+  <a href="https://www.npmjs.com/package/wukong-progress"><img src="https://img.shields.io/npm/dm/wukong-progress.svg" alt="downloads"></a>
+  <a href="https://github.com/tomatobybike/wukong-progress/blob/master/LICENSE"><img src="https://img.shields.io/github/license/tomatobybike/wukong-progress.svg" alt="license"></a>
+  <a href="https://github.com/tomatobybike/wukong-progress"><img src="https://img.shields.io/github/stars/tomatobybike/wukong-progress.svg?style=social" alt="GitHub stars"></a>
+  <a href="https://github.com/tomatobybike/wukong-progress/issues"><img src="https://img.shields.io/github/issues/tomatobybike/wukong-progress.svg" alt="issues"></a>
+</p>
+
 🎨 A Node.js / ESM style CLI progress bar library that supports:
 
 - Single / multiple progress bars
